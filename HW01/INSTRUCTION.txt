@@ -1,0 +1,27 @@
+ИНСТРУКЦИЯ ПО УСТАНОВКЕ/ЗАПУСКУ ПРИЛОЖЕНИЯ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Системные требования:
+ - Debian 12 или Astra Linux 1.8 ,
+ - PostgreSQL 15 ,
+ - Python 3.11 .
+
+ ! Для системы Astra Linux в конфигурационном файле
+     /etc/postgresql/15/main/postgresql.conf
+   выставить следующие опции:
+     ac_ignore_maclabel = true
+     ac_ignore_socket_maclabel = true
+     ac_ignore_server_maclabel = true
+
+1. Установить СУБД postgresql и создать объекты БД
+   см. скрипт `01_create_db_schema.sh`
+   (требуется пользователь, включенный в группу sudoers,
+    для доступа к пользователю postgres через su)
+
+2. Настроить локальное python-venv окружение для приложения
+   в домашнем каталоге текущего пользователя:
+   ~/homework_srv
+   см. скрипт `02_setup_env.sh`
+
+3. Выполнить запуск приложения (используется uvicorn на TCP-порте 8090)
+   см. скрипт `03_run_application.sh`

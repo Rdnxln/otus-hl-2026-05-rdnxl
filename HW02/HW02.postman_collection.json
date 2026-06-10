@@ -1,0 +1,869 @@
+{
+  "info": {
+    "_postman_id": "49dadd2e-8aad-401d-af1d-061e2be7b81e",
+    "name": "Домашняя работа",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55046620",
+    "_collection_link": "https://go.postman.co/collection/55046620-49dadd2e-8aad-401d-af1d-061e2be7b81e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "user/register",
+      "item": [
+        {
+          "name": "Регистрация пользователя",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Имя\",\n  \"second_name\": \"Фамилия\",\n  \"birthdate\": \"2017-02-01\",\n  \"biography\": \"Хобби, интересы и т.п.\",\n  \"city\": \"Москва\",\n  \"password\": \"Секретная строка\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8090/user/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Пустой запрос",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/user/register",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:15:18 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "49"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Тело запроса пустое\"\n}"
+            },
+            {
+              "name": "Регистрация с некорректной датой рождения",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"Имя\",\n  \"second_name\": \"Фамилия\",\n  \"birthdate\": \"2017-22-01\",\n  \"biography\": \"Хобби, интересы и т.п.\",\n  \"city\": \"Москва\",\n  \"password\": \"Секретная строка\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/user/register",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:11:28 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "258"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": [\n        {\n            \"type\": \"date_from_datetime_parsing\",\n            \"loc\": [\n                \"body\",\n                \"birthdate\"\n            ],\n            \"msg\": \"Input should be a valid date or datetime, month value is outside expected range of 1-12\",\n            \"input\": \"2017-22-01\",\n            \"ctx\": {\n                \"error\": \"month value is outside expected range of 1-12\"\n            }\n        }\n    ]\n}"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"Имя\",\n  \"second_name\": \"Фамилия\",\n  \"birthdate\": \"2017-02-01\",\n  \"city\": \"Москва\",\n  \"password\": \"Секретная строка\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/user/register",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:12:51 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "21"
+                },
+                {
+                  "key": "content-type",
+                  "value": "text/plain; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "Internal Server Error"
+            },
+            {
+              "name": "Успешная регистрация",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"Имя\",\n  \"second_name\": \"Фамилия\",\n  \"birthdate\": \"2017-02-01\",\n  \"biography\": \"Хобби, интересы и т.п.\",\n  \"city\": \"Москва\",\n  \"password\": \"Секретная строка\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/user/register",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:18:42 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "50"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user_id\": \"66aa12af-cd5d-493c-a20a-21c8b1ec5a8f\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "Аутентификация",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Имя\",\n  \"second_name\": \"Фамилия\",\n  \"birthdate\": \"2017-02-01\",\n  \"biography\": \"Хобби, интересы и т.п.\",\n  \"city\": \"Москва\",\n  \"password\": \"Секретная строка\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8090/user/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Несуществующий пользователь",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"eed4bb1e-7e5a-4eaa-b497-5002f3c79b62\",\n  \"password\": \"Секретная строка\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/login",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:38:25 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "55"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Пользователь не найден\"\n}"
+            },
+            {
+              "name": "Ошибка в пароле",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"eed4bb1e-7e5a-4eaa-b497-5002f3c79b61\",\n  \"password\": \"Секретная строка2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/login",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:38:50 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "42"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Неверный пароль\"\n}"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"eed4bb1e-7e5a-4eaa-b497-5002f3c79b61\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/login",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:40:20 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "21"
+                },
+                {
+                  "key": "content-type",
+                  "value": "text/plain; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "Internal Server Error"
+            },
+            {
+              "name": "Успешная аутентификация",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"eed4bb1e-7e5a-4eaa-b497-5002f3c79b61\",\n  \"password\": \"Секретная строка\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/login",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:41:02 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "48"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"token\": \"a961fcd0-39f5-4d85-82d7-33ed75cc6c67\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "user/get/{id}",
+      "item": [
+        {
+          "name": "Запрос анкеты без авторизации",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/user/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Запрос анкеты без идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:24:47 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "22"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Not Found\"\n}"
+            },
+            {
+              "name": "Запрос ошибочного идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/oops",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "oops"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:25:39 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "www-authenticate",
+                  "value": "Bearer"
+                },
+                {
+                  "key": "content-length",
+                  "value": "30"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Not authenticated\"\n}"
+            },
+            {
+              "name": "Запрос корректного, но несуществующего идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/aad4bb1e-7e5a-4eaa-b497-5002f3c79b61",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "aad4bb1e-7e5a-4eaa-b497-5002f3c79b61"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:28:29 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "www-authenticate",
+                  "value": "Bearer"
+                },
+                {
+                  "key": "content-length",
+                  "value": "30"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Not authenticated\"\n}"
+            },
+            {
+              "name": "Запрос существующего идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/eed4bb1e-7e5a-4eaa-b497-5002f3c79b61",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "eed4bb1e-7e5a-4eaa-b497-5002f3c79b61"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:30:14 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "www-authenticate",
+                  "value": "Bearer"
+                },
+                {
+                  "key": "content-length",
+                  "value": "30"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Not authenticated\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Запрос анкеты авторизованным пользователем",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/user/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Запрос анкеты без идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:43:04 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "22"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Not Found\"\n}"
+            },
+            {
+              "name": "Запрос ошибочного идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/oops",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "oops"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:54:44 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "45"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Анкета не найдена\"\n}"
+            },
+            {
+              "name": "Запрос анкеты существующего идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/eed4bb1e-7e5a-4eaa-b497-5002f3c79b61",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "eed4bb1e-7e5a-4eaa-b497-5002f3c79b61"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:55:03 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "198"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"eed4bb1e-7e5a-4eaa-b497-5002f3c79b61\",\n    \"first_name\": \"Имя\",\n    \"second_name\": \"Фамилия\",\n    \"birthdate\": \"2017-02-01\",\n    \"biography\": \"Хобби, интересы и т.п.\",\n    \"city\": \"Москва\"\n}"
+            },
+            {
+              "name": "Запрос анкеты корректного, но несуществующего идентификатора",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/user/get/eed4bb1e-7e5a-4eaa-b497-5002f3c79b60",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "user",
+                    "get",
+                    "eed4bb1e-7e5a-4eaa-b497-5002f3c79b60"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "date",
+                  "value": "Wed, 10 Jun 2026 16:57:16 GMT"
+                },
+                {
+                  "key": "server",
+                  "value": "uvicorn"
+                },
+                {
+                  "key": "content-length",
+                  "value": "45"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"detail\": \"Анкета не найдена\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
